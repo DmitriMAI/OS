@@ -15,7 +15,6 @@ void *runner() {
     for (i = 0; i < ppt; i++) {
         double x = rand_r(&rand_state) / ((double)RAND_MAX + 1) * 2* radius - (radius);
         double y = rand_r(&rand_state) / ((double)RAND_MAX + 1) * 2*radius - (radius);
-	//printf ("%lf %lf\n\n", x, y);
         if (x * x + y * y <= (radius* radius)) {
             incircle_thread++;
         }
@@ -32,7 +31,7 @@ int main(int argc, const char *argv[])
     clock_gettime(CLOCK_REALTIME, &start_t);
 
     if (argc != 4) {
-        fprintf(stderr, "usage: ./pi <total points> <threads>\n");
+        fprintf(stderr, "usage: ./pi <total points> <threads> <radius>\n");
         exit(1);
     }
     long totalpoints = atol(argv[1]);
@@ -64,6 +63,5 @@ int main(int argc, const char *argv[])
 	
 	printf ("%ld %ld %d\n", incircle, ppt,thread_count);
     printf("Plosh: %lf \n", coef*2*radius*2*radius);
-    printf("Time: %d sec\n", (unsigned int)(time(NULL) - start));
     return 0;
 }
