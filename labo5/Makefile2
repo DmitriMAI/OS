@@ -1,0 +1,21 @@
+pi: main.o libpi.so libsss.so
+	gcc  -o pi2 main.o -L. -lpi -lsss -Wl,-rdynamic,-rpath,.
+
+main.o: main.c
+	gcc -c main.c
+
+libpi.so: pi.o
+	gcc -shared -o libpi.so pi.o
+
+libsss.so: sss.o
+	gcc -shared -o libsss.so sss.o
+
+pi.o: pi.c
+	gcc -c -fPIC pi.c
+
+sss.o: sss.c
+	gcc -c -fPIC sss.c
+
+clean:
+	rm -f *.o 
+
